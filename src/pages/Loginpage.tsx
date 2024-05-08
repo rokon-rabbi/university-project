@@ -12,25 +12,32 @@ const LoginPage = () => {
         password: ''
     });
     const navigate = useNavigate();
-  
-    const [error, setError] = useState(null);
+
+    const [error, setError] = useState('');
 
     const handleLoginClick = () => {
         setShowLoginForm(true);
     };
-
-    const handleSubmit = (e:any) => {
+    axios.defaults.withCredentials = true;
+    const handleSubmit = (e: any) => {
         e.preventDefault();
-        axios.post('http://localhost:8001/auth/login', values)
+        axios.post('http://localhost:5000/auth/login', values)
             .then(result => {
                 console.log(result);
-                if (result.data.userType === 'student') {
-                    navigate('/dashboard');
-                } else if (result.data.userType === 'teacher') {
-                    navigate('/teacher-dashboard');
-                } else {
-                    setError("Invalid user type");
-                }
+                    // Redirect to appropriate dashboard
+                    if (result.data.message === 'Login successful') {
+                        localStorage.setItem('token', result.data.token);
+                        if (result.data.userType === 'student') {
+                            navigate('/dashboard');
+                        } else if (result.data.userType === 'teacher') {
+                            navigate('/dashboard'); // Change to teacher dashboard route if needed
+                        } else {
+                            setError("Invalid user type");
+                        }
+                    } else {
+                        setError("Invalid email or password");
+                    }
+
             })
             .catch(err => console.log(err));
     };
@@ -59,7 +66,7 @@ const LoginPage = () => {
                             ]}
                             wrapper="span"
                             speed={50}
-                            style={{ fontSize: '1.3em',color:'black', height: '50px', display: 'inline-block' }}
+                            style={{ fontSize: '1.3em', color: 'black', height: '50px', display: 'inline-block' }}
                             repeat={Infinity}
                         />
                         <button className="bg-blue-500 mt-20 md:mt-0 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleLoginClick}>Login</button>
