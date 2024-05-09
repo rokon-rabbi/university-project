@@ -4,13 +4,15 @@ import loginImage from '../assets/login.png';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const LoginPage = () => {
     const [showLoginForm, setShowLoginForm] = useState(false);
     const [values, setValues] = useState({
         email: '',
         password: ''
     });
+
     const navigate = useNavigate();
 
     const [error, setError] = useState('');
@@ -24,28 +26,45 @@ const LoginPage = () => {
         axios.post('http://localhost:5000/auth/login', values)
             .then(result => {
                 console.log(result);
-                    // Redirect to appropriate dashboard
-                    if (result.data.message === 'Login successful') {
-                        localStorage.setItem('token', result.data.token);
-                        if (result.data.userType === 'student') {
-                            navigate('/dashboard');
-                        } else if (result.data.userType === 'teacher') {
-                            navigate('/dashboard'); // Change to teacher dashboard route if needed
-                        } else {
-                            setError("Invalid user type");
-                        }
+                // Redirect to appropriate dashboard
+                if (result.data.message === 'Login successful') {
+
+                    localStorage.setItem('token', result.data.token);
+                    toast.success('Login successful!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                    });
+
+                    if (result.data.userType === 'student') {
+                        navigate('/dashboard');
+                    } else if (result.data.userType === 'teacher') {
+                        navigate('/dashboard'); // Change to teacher dashboard route if needed
                     } else {
-                        setError("Invalid email or password");
+                        setError("Invalid user type");
                     }
+                } else {
+                    setError("Invalid email or password");
+                }
 
             })
-            .catch(err => console.log(err));
+            .catch((err): any => {
+                setError("Invalid email or password");
+                console.log(err)
+            });
     };
 
     const [showPassword, setShowPassword] = useState(false);
 
     return (
         <div className="flex flex-col p-12 md:flex-row h-screen">
+
             <div className="md:w-1/2 h-full bg-cover bg-center" style={{ backgroundImage: `url(${loginImage})` }}></div>
             <div className="md:w-1/2 flex flex-col justify-center items-center p-8">
                 {!showLoginForm && (
