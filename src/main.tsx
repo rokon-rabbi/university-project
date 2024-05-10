@@ -13,23 +13,28 @@ import ErrorPage from './pages/ErrorPage';
 import Profile from './pages/Profile';
 import Calendar from "./pages/Calendar";
 
+import Sample from "./sample";
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
-    element:  <LoginPage/>,
+    element: <LoginPage />,
     errorElement: <ErrorPage />
   },
+
   {
     path: "/dashboard",
-    element: <PrivateRoute><App/></PrivateRoute>,
+    element:
+      <PrivateRoute><Sample /></PrivateRoute>,
     children: [
       {
         path: "/dashboard/profile", // Relative path to the parent route "/dashboard/*"
-        element: <PrivateRoute><Profile/></PrivateRoute>
+        element: <PrivateRoute><Profile /></PrivateRoute>
       },
       {
         path: "/dashboard/calendar", // Relative path to the parent route "/dashboard/*"
-        element: <PrivateRoute><Calendar/></PrivateRoute>
+        element: <PrivateRoute><Calendar /></PrivateRoute>
       }
     ]
   },

@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import loginImage from '../assets/login.png';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const LoginPage = () => {
+
+  
     const [showLoginForm, setShowLoginForm] = useState(false);
     const [values, setValues] = useState({
         email: '',
         password: ''
     });
-
+    
     const navigate = useNavigate();
 
     const [error, setError] = useState('');
@@ -25,11 +28,14 @@ const LoginPage = () => {
         e.preventDefault();
         axios.post('http://localhost:5000/auth/login', values)
             .then(result => {
-                console.log(result);
+              
                 // Redirect to appropriate dashboard
                 if (result.data.message === 'Login successful') {
 
                     localStorage.setItem('token', result.data.token);
+                   
+                    console.log(result.data.user);
+                
                     toast.success('Login successful!', {
                         position: "top-right",
                         autoClose: 5000,
