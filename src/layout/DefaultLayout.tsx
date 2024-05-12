@@ -1,12 +1,22 @@
 import React, { useState, ReactNode, useEffect } from 'react';
 import Header from '../components/Header/index';
 import Sidebar from '../components/Sidebar/index';
+import TeacherSidebar from '../components/Sidebar/TeacherSidebar';
 
 // import axios from 'axios';
 // import { useNavigate } from 'react-router-dom';
 
 const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  // let role;
+  // const [user, setUser] = useState<any>({ user_type: "" });
+  // useEffect(() => {
+  //   const storedUser = localStorage.getItem('user');
+  //   if (storedUser) {
+  //     setUser(JSON.parse(storedUser)); // Set user state from localStorage
+  //   }
+  // }, []);
+  
 
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">

@@ -15,6 +15,12 @@ import Calendar from "./pages/Calendar";
 import { Provider } from "react-redux";
 import Sample from "./sample";
 import store from "./redux/store/store";
+import AttendenceReport from "./pages/Student/AttendenceReport";
+import StudentRoute from "./Routes/StudentRoute";
+import CourseEvaluation from "./pages/Student/CourseEvaluation";
+import ExamEntry from "./pages/Student/ExamEntry";
+import ExamEntries from "./pages/Register/ExamEntries";
+import RegisterRoute from "./Routes/RegisterRoute";
 
 
 
@@ -32,12 +38,28 @@ export const router = createBrowserRouter([
     // <RegisterPage/>,
     children: [
       {
-        path: "/dashboard/profile", // Relative path to the parent route "/dashboard/*"
-        element: <PrivateRoute><Profile /></PrivateRoute>
+        path: "/dashboard/attendence", // Relative path to the parent route "/dashboard/*"
+        element:<StudentRoute> <AttendenceReport/></StudentRoute>
+      },
+      {
+        path: "/dashboard/evaluation", // Relative path to the parent route "/dashboard/*"
+        element:<StudentRoute> <CourseEvaluation/></StudentRoute>
+      },
+      {
+        path: "/dashboard/exam", // Relative path to the parent route "/dashboard/*"
+        element: <StudentRoute><ExamEntry/></StudentRoute>
+      },
+      {
+        path: "/dashboard/examEntries", // Relative path to the parent route "/dashboard/*"
+        element: <RegisterRoute><ExamEntries/></RegisterRoute>
       },
       {
         path: "/dashboard/calendar", // Relative path to the parent route "/dashboard/*"
         element: <PrivateRoute><Calendar /></PrivateRoute>
+      },
+      {
+        path: "/dashboard/profile", // Relative path to the parent route "/dashboard/*"
+        element: <PrivateRoute><Profile /></PrivateRoute>
       }
     ]
   },

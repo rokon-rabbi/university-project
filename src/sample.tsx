@@ -8,6 +8,12 @@ import ECommerce from './pages/Dashboard/ECommerce';
 import Profile from './pages/Profile';
 import Calendar from './pages/Calendar';
 import axios from 'axios';
+import AttendenceReport from './pages/Student/AttendenceReport';
+import CourseEvaluation from './pages/Student/CourseEvaluation';
+import ExamEntry from './pages/Student/ExamEntry';
+import ExamEntries from './pages/Register/ExamEntries';
+import StudentRoute from './Routes/StudentRoute';
+import RegisterRoute from './Routes/RegisterRoute';
 
 function Sample() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -42,17 +48,57 @@ function Sample() {
           index
           element={
             <>
-              <PageTitle title="Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Dashboard" />
               <ECommerce />
               
             </>
           }
         />
+        {/* student routes  start */}
+        <Route
+          path="/attendence"
+          element={
+            <>
+              <PageTitle title="attendence" />
+             <StudentRoute> <AttendenceReport/></StudentRoute>
+            </>
+          }
+        />
+        <Route
+          path="/evaluation"
+          element={
+            <>
+              <PageTitle title=" course evaluation" />
+              <StudentRoute>  <CourseEvaluation/></StudentRoute>
+            </>
+          }
+        />
+        <Route
+          path="/exam"
+          element={
+            <>
+              <PageTitle title="exam entry" />
+              <StudentRoute>  <ExamEntry/></StudentRoute>
+            </>
+          }
+        />
+        {/* student route end  */}
+        {/* Register start  */}
+        <Route
+          path="/examEntries"
+          element={
+            <>
+              <PageTitle title="exam entries" />
+             <RegisterRoute> <ExamEntries/></RegisterRoute>
+            </>
+          }
+        />
+        {/* Register end  */}
         <Route
           path="/calendar"
           element={
             <>
-              <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="logout" />
               <Calendar />
             </>
           }
@@ -61,7 +107,7 @@ function Sample() {
           path="/profile"
           element={
             <>
-              <PageTitle title="Profile | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Profile" />
               <Profile />
             </>
           }
