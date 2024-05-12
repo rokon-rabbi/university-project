@@ -6,6 +6,8 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../redux/state/loginState/loginSlice';
 
 const LoginPage = () => {
 
@@ -19,7 +21,7 @@ const LoginPage = () => {
     const navigate = useNavigate();
 
     const [error, setError] = useState('');
-
+    const dispatch = useDispatch();
     const handleLoginClick = () => {
         setShowLoginForm(true);
     };
@@ -33,7 +35,8 @@ const LoginPage = () => {
                 if (result.data.message === 'Login successful') {
 
                     localStorage.setItem('token', result.data.token);
-                   
+                    localStorage.setItem('user', JSON.stringify(result.data.user));
+                    // dispatch(setUser(result.data.user));
                     console.log(result.data.user);
                 
                     toast.success('Login successful!', {
@@ -52,7 +55,21 @@ const LoginPage = () => {
                         navigate('/dashboard');
                     } else if (result.data.userType === 'teacher') {
                         navigate('/dashboard'); // Change to teacher dashboard route if needed
-                    } else {
+                    } 
+                    else if (result.data.userType === 'chairman') {
+                        navigate('/dashboard'); // Change to teacher dashboard route if needed
+                    } 
+                    else if (result.data.userType === 'coordinator') {
+                        navigate('/dashboard'); // Change to teacher dashboard route if needed
+                    } 
+                    else if (result.data.userType === 'provost') {
+                        navigate('/dashboard'); // Change to teacher dashboard route if needed
+                    } 
+                    else if (result.data.userType === 'register office') {
+                        navigate('/dashboard'); // Change to teacher dashboard route if needed
+                    } 
+
+                    else {
                         setError("Invalid user type");
                     }
                 } else {
@@ -112,6 +129,7 @@ const LoginPage = () => {
                                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     type="email"
                                     name='email'
+                                    required
                                     autoComplete='off'
                                     placeholder='Enter Email'
                                     value={values.email}
@@ -127,6 +145,7 @@ const LoginPage = () => {
                                     type={showPassword ? "text" : "password"}
                                     name='password'
                                     placeholder='Enter Password'
+                                    required
                                     value={values.password}
                                     onChange={(e) => setValues({ ...values, password: e.target.value })}
                                 />

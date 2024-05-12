@@ -12,8 +12,10 @@ import PrivateRoute from './Routes/PrivateRoute';
 import ErrorPage from './pages/ErrorPage';
 import Profile from './pages/Profile';
 import Calendar from "./pages/Calendar";
-
+import { Provider } from "react-redux";
 import Sample from "./sample";
+import store from "./redux/store/store";
+
 
 
 export const router = createBrowserRouter([
@@ -27,6 +29,7 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element:
       <PrivateRoute><Sample /></PrivateRoute>,
+    // <RegisterPage/>,
     children: [
       {
         path: "/dashboard/profile", // Relative path to the parent route "/dashboard/*"
@@ -42,6 +45,9 @@ export const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+
   </React.StrictMode>
 );
