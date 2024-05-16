@@ -1,14 +1,14 @@
 import React from 'react';
 import DefaultLayout from '../../layout/DefaultLayout';
 
-const TeacherClasses = () => {
+const ExamEntriesProvost = () => {
     return (
         <DefaultLayout>
         <div>
-            <h1>Teacher classes page</h1>
+            <h1>Exam Entries page</h1>
         </div>
         </DefaultLayout>
     );
 };
 
-export default TeacherClasses;
+export default ExamEntriesProvost;

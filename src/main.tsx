@@ -30,6 +30,10 @@ export const router = createBrowserRouter([
     element: <LoginPage />,
     errorElement: <ErrorPage />
   },
+  {
+    path: "/register", // Relative path to the parent route "/dashboard/*"
+    element:<RegisterPage></RegisterPage>
+  },
 
   {
     path: "/dashboard",
@@ -37,6 +41,7 @@ export const router = createBrowserRouter([
       <PrivateRoute><Sample /></PrivateRoute>,
     // <RegisterPage/>,
     children: [
+     
       {
         path: "/dashboard/attendence", // Relative path to the parent route "/dashboard/*"
         element:<StudentRoute> <AttendenceReport/></StudentRoute>
@@ -52,10 +57,6 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/examEntries", // Relative path to the parent route "/dashboard/*"
         element: <RegisterRoute><ExamEntries/></RegisterRoute>
-      },
-      {
-        path: "/dashboard/calendar", // Relative path to the parent route "/dashboard/*"
-        element: <PrivateRoute><Calendar /></PrivateRoute>
       },
       {
         path: "/dashboard/profile", // Relative path to the parent route "/dashboard/*"

@@ -1,14 +1,14 @@
 import React from 'react';
 import DefaultLayout from '../../layout/DefaultLayout';
 
-const TeacherClasses = () => {
+const CoordinatorEvaluation = () => {
     return (
         <DefaultLayout>
         <div>
-            <h1>Teacher classes page</h1>
+            <h1>Coordinator Evaluation page</h1>
         </div>
         </DefaultLayout>
     );
 };
 
-export default TeacherClasses;
+export default CoordinatorEvaluation;

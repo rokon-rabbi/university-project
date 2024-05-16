@@ -50,15 +50,16 @@ const DropdownUser = ({ user }:any) => {
         to="#"
       >
         <span className="hidden text-right lg:block">
-          <span className="block text-sm font-medium text-white">
+          <span className="block text-base font-medium text-white">
             {user.user_name}
           </span>
 
         </span>
 
-        <span className="h-12 w-12 rounded-full">
-          <img src={UserOne} alt="User" />
-        </span>
+        <span className="h-12 w-12 rounded-full overflow-hidden">
+  <img className="h-full w-full object-cover" src={user.user_image} alt="User" />
+</span>
+
 
         <svg
           className="hidden fill-current sm:block"

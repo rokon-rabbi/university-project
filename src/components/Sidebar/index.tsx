@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import SidebarLinkGroup from './SidebarLinkGroup';
 import Logo from '../../assets/nstu.png';
 import ErrorPage from '../../pages/ErrorPage';
@@ -44,7 +44,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     document.addEventListener('click', clickHandler);
     return () => document.removeEventListener('click', clickHandler);
   });
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
 
+    navigate('/');
+  };
   // close if the esc key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }: KeyboardEvent) => {
@@ -245,7 +251,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                                 <li>
                                   <NavLink
-                                    to="/dashboard/evaluation"
+                                    to="/dashboard/CourseDistribution"
                                     className={({ isActive }) =>
                                       'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-black duration-300 ease-in-out hover:text-white ' +
                                       (isActive && '!text-white')
@@ -256,7 +262,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/dashboard/evaluation"
+                                    to="/dashboard/CoordinatorDistribution"
                                     className={({ isActive }) =>
                                       'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-black duration-300 ease-in-out hover:text-white ' +
                                       (isActive && '!text-white')
@@ -267,7 +273,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 </li>
                                 <li>
                                   <NavLink
-                                    to="/dashboard/evaluation"
+                                    to="/dashboard/ChairmanEvaluation"
                                     className={({ isActive }) =>
                                       'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-black duration-300 ease-in-out hover:text-white ' +
                                       (isActive && '!text-white')
@@ -286,7 +292,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                                   <li>
                                     <NavLink
-                                      to="/dashboard/evaluation"
+                                      to="/dashboard/CoordinatorClasses"
                                       className={({ isActive }) =>
                                         'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-black duration-300 ease-in-out hover:text-white ' +
                                         (isActive && '!text-white')
@@ -297,7 +303,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                   </li>
                                   <li>
                                     <NavLink
-                                      to="/dashboard/evaluation"
+                                      to="/dashboard/CoordinatorEvaluation"
                                       className={({ isActive }) =>
                                         'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-black duration-300 ease-in-out hover:text-white ' +
                                         (isActive && '!text-white')
@@ -308,7 +314,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                   </li>
                                   <li>
                                     <NavLink
-                                      to="/dashboard/evaluation"
+                                      to="/dashboard/Coordinator"
                                       className={({ isActive }) =>
                                         'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-black duration-300 ease-in-out hover:text-white ' +
                                         (isActive && '!text-white')
@@ -355,7 +361,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                     <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
                                       <li>
                                         <NavLink
-                                          to="/dashboard/evaluation"
+                                          to="/dashboard/ExamEntriesProvost"
                                           className={({ isActive }) =>
                                             'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-black duration-300 ease-in-out hover:text-white ' +
                                             (isActive && '!text-white')
@@ -411,26 +417,31 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {/* <!-- Menu Item Profile --> */}
               {/* <!-- Menu Item Calendar --> */}
               <li>
-                <NavLink
-                  to="/dashboard/calendar"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black hover:text-white duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('calendar') &&
-                    'bg-graydark dark:bg-meta-4 text-white'
+              <NavLink
+                  to="/"onClick={handleLogout}
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-black hover:text-white duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes('profile') && 'bg-graydark dark:bg-meta-4 text-white'
                     }`}
                 >
+                <button  className="flex items-center ">
                   <svg
                     className="fill-current"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 18 18"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      d="M15.7499 2.9812H14.2874V2.36245C14.2874 2.02495 14.0062 1.71558 13.6405 1.71558C13.2749 1.71558 12.9937 1.99683 12.9937 2.36245V2.9812H4.97803V2.36245C4.97803 2.02495 4.69678 1.71558 4.33115 1.71558C3.96553 1.71558 3.68428 1.99683 3.68428 2.36245V2.9812H2.2499C1.29365 2.9812 0.478027 3.7687 0.478027 4.75308V14.5406C0.478027 15.4968 1.26553 16.3125 2.2499 16.3125H15.7499C16.7062 16.3125 17.5218 15.525 17.5218 14.5406V4.72495C17.5218 3.7687 16.7062 2.9812 15.7499 2.9812ZM1.77178 8.21245H4.1624V10.9968H1.77178V8.21245ZM5.42803 8.21245H8.38115V10.9968H5.42803V8.21245ZM8.38115 12.2625V15.0187H5.42803V12.2625H8.38115ZM9.64678 12.2625H12.5999V15.0187H9.64678V12.2625ZM9.64678 10.9968V8.21245H12.5999V10.9968H9.64678ZM13.8374 8.21245H16.228V10.9968H13.8374V8.21245ZM2.2499 4.24683H3.7124V4.83745C3.7124 5.17495 3.99365 5.48433 4.35928 5.48433C4.7249 5.48433 5.00615 5.20308 5.00615 4.83745V4.24683H13.0499V4.83745C13.0499 5.17495 13.3312 5.48433 13.6968 5.48433C14.0624 5.48433 14.3437 5.20308 14.3437 4.83745V4.24683H15.7499C16.0312 4.24683 16.2562 4.47183 16.2562 4.75308V6.94683H1.77178V4.75308C1.77178 4.47183 1.96865 4.24683 2.2499 4.24683ZM1.77178 14.5125V12.2343H4.1624V14.9906H2.2499C1.96865 15.0187 1.77178 14.7937 1.77178 14.5125ZM15.7499 15.0187H13.8374V12.2625H16.228V14.5406C16.2562 14.7937 16.0312 15.0187 15.7499 15.0187Z"
+                      d="M15.5375 0.618744H11.6531C10.7594 0.618744 10.0031 1.37499 10.0031 2.26874V4.64062C10.0031 5.05312 10.3469 5.39687 10.7594 5.39687C11.1719 5.39687 11.55 5.05312 11.55 4.64062V2.23437C11.55 2.16562 11.5844 2.13124 11.6531 2.13124H15.5375C16.3625 2.13124 17.0156 2.78437 17.0156 3.60937V18.3562C17.0156 19.1812 16.3625 19.8344 15.5375 19.8344H11.6531C11.5844 19.8344 11.55 19.8 11.55 19.7312V17.3594C11.55 16.9469 11.2062 16.6031 10.7594 16.6031C10.3125 16.6031 10.0031 16.9469 10.0031 17.3594V19.7312C10.0031 20.625 10.7594 21.3812 11.6531 21.3812H15.5375C17.2219 21.3812 18.5625 20.0062 18.5625 18.3562V3.64374C18.5625 1.95937 17.1875 0.618744 15.5375 0.618744Z"
+                      fill=""
+                    />
+                    <path
+                      d="M6.05001 11.7563H12.2031C12.6156 11.7563 12.9594 11.4125 12.9594 11C12.9594 10.5875 12.6156 10.2438 12.2031 10.2438H6.08439L8.21564 8.07813C8.52501 7.76875 8.52501 7.2875 8.21564 6.97812C7.90626 6.66875 7.42501 6.66875 7.11564 6.97812L3.67814 10.4844C3.36876 10.7938 3.36876 11.275 3.67814 11.5844L7.11564 15.0906C7.25314 15.2281 7.45939 15.3312 7.66564 15.3312C7.87189 15.3312 8.04376 15.2625 8.21564 15.125C8.52501 14.8156 8.52501 14.3344 8.21564 14.025L6.05001 11.7563Z"
                       fill=""
                     />
                   </svg>
-                  Logout
+                  Log Out
+                </button>
                 </NavLink>
               </li>
               {/* <!-- Menu Item Calendar --> */}

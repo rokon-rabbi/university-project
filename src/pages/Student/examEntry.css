@@ -1,0 +1,52 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+.form-table td, .form-table th {
+    border: 1px solid #000;
+}
+.form-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.input-field {
+    border-bottom: 1px solid #000;
+    display: inline-block;
+    width: 90%;
+}
+.signature-field {
+    border-top: 1px solid #000;
+}
+.logo-text {
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+
+  .form-header {
+    background-color: #e6e6e6;
+  }
+  .form-table th, .form-table td {
+    border: 1px solid #ddd;
+  }
+  .form-table th {
+    background-color: #f9f9f9;
+  }
+  .admit-card {
+    background-color: #e6e6e6;
+    font-weight: bold;
+  }
+  .signature-block {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .input-field {
+    border-bottom: 1px solid #000;
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .table-header-row {
+    background-color: #bdd6ee;
+  }
