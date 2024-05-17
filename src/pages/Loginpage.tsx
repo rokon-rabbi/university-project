@@ -3,7 +3,7 @@ import { TypeAnimation } from 'react-type-animation';
 import loginImage from '../assets/login.png';
 import axios from 'axios';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Bounce, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from 'react-redux';
@@ -112,6 +112,7 @@ const LoginPage = () => {
                             repeat={Infinity}
                         />
                         <button className="bg-blue-500 mt-20 md:mt-0 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleLoginClick}>Login</button>
+                        <Link to={"/reset"}> <h2 className="text-sm underline text-blue-500 mt-5 text-center">Reset Password with email</h2></Link>
                     </>
                 )}
                 {

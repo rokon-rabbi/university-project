@@ -21,6 +21,8 @@ import CourseEvaluation from "./pages/Student/CourseEvaluation";
 import ExamEntry from "./pages/Student/ExamEntry";
 import ExamEntries from "./pages/Register/ExamEntries";
 import RegisterRoute from "./Routes/RegisterRoute";
+import Reset from "./pages/Reset";
+import NewPassword from "./pages/NewPassword";
 
 
 
@@ -33,6 +35,14 @@ export const router = createBrowserRouter([
   {
     path: "/register", // Relative path to the parent route "/dashboard/*"
     element:<RegisterPage></RegisterPage>
+  },
+  {
+    path: "/reset", // Relative path to the parent route "/dashboard/*"
+    element:<Reset/>
+  },
+  {
+    path: "/reset-password", // Relative path to the parent route "/dashboard/*"
+    element:<NewPassword/>
   },
 
   {
