@@ -1,5 +1,5 @@
 import DefaultLayout from '../layout/DefaultLayout';
-import CoverOne from '../images/cover/cover-01.png';
+import CoverOne from '../images/cover/cover2.jpg';
 // import userSix from '../images/user/user-06.png';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';

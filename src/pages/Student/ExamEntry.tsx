@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+
+import React, { useEffect, useRef, useState } from 'react';
 import DefaultLayout from '../../layout/DefaultLayout';
 import './examEntry.css'
+import DownloadPdfButton from '../../common/DownloadPdfButton';
 import logo from '../../assets/nstu.png'
 const ExamEntry = () => {
     const [user, setUser] = useState<any>(null); // Initialize user state
-
+    const printRef = useRef();
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
@@ -16,6 +18,8 @@ const ExamEntry = () => {
         <DefaultLayout>
 
             <>
+            <DownloadPdfButton targetRef={printRef} />
+            <div ref={printRef} className="">
                 <div className="container mx-auto md:p-4">
                     <div className="form-header p-4 md:flex md:flex-col md:items-center md:justify-center">
                         <div className="flex justify-between items-center mb-4">
@@ -109,7 +113,7 @@ const ExamEntry = () => {
                         <label>Percentage of attendance: ______________</label>
                     </div>
 
-                    <div className="signature-block p-10 md:mt-18 md:mb-6">
+                    <div className="signature-block p-6 md:mt-6 ">
                         <div>Chairman</div>
                         <div>Provost</div>
                     </div>
@@ -168,6 +172,7 @@ const ExamEntry = () => {
                         <label className="signature-field w-1/2 text-center float-right">Controller of Examinations</label>
                     </div>
 
+                </div>
                 </div>
             </>
 

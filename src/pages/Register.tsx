@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import Swal from 'sweetalert2'
 const RegisterPage: React.FC = () => {
   const [values, setValues] = useState({
     name: '',
@@ -20,6 +20,13 @@ const RegisterPage: React.FC = () => {
     e.preventDefault();
     axios.post('http://localhost:5000/auth/register', values)
             .then(result => {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500
+              });
                 console.log(result);
             })
             .catch(err => console.log(err));

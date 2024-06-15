@@ -1,6 +1,7 @@
 
 body {
     font-family: 'Roboto', sans-serif;
+    width: 100%;
 }
 *{
   padding: 0;
@@ -54,3 +55,9 @@ body {
   .table-header-row {
     background-color: #bdd6ee;
   }
+  /* @media screen and (max-width: 768px) {
+    body {
+      width: 1024px; 
+      zoom: 0.75; 
+    }
+  } */
