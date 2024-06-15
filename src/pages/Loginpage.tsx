@@ -112,7 +112,7 @@ const LoginPage = () => {
                             repeat={Infinity}
                         />
                         <button className="bg-blue-500 mt-20 md:mt-0 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleLoginClick}>Login</button>
-                        <Link to={"/reset"}> <h2 className="text-sm underline text-blue-500 mt-5 text-center">Reset Password with email</h2></Link>
+                        <Link to={"/reset"}> <h2 className="text-sm underline text-blue-500 mt-5 text-center">Forgot or Reset Password with email</h2></Link>
                     </>
                 )}
                 {

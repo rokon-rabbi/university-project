@@ -9,7 +9,7 @@ const NewPassword = () => {
     const token = searchParams.get('token');
     console.log(token);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e:any) => {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:5000/auth/reset-password', { token, newPassword });

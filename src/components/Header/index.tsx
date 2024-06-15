@@ -1,3 +1,4 @@
+import { ToastContainer } from 'react-toastify';
 import DropdownUser from './DropdownUser';
 import { useEffect, useState } from 'react';
 
@@ -16,7 +17,9 @@ const Header = (props: {
 
   return (
     <header className="sticky top-0 z-999 flex w-full bg-[#337AB7] drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
+        
       <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11">
+    
         <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
           {/* <!-- Hamburger Toggle BTN --> */}
           <button
@@ -54,6 +57,7 @@ const Header = (props: {
               </span>
             </span>
           </button>
+          <ToastContainer />
           {/* <!-- Hamburger Toggle BTN --> */}
           <h1 className='text-white'>{user?.user_type === "student" ? "Student Dashboard" :
             user.user_type === "register office" ? "Register Dashboard" : user.user_type === "chairman" ? "Chairman Dashboard" : user.user_type === "coordinator" ? "Coordinator Dashboard" : user.user_type === "teacher" ? "Teacher Dashboard" :
@@ -65,6 +69,7 @@ const Header = (props: {
         </div>
 
         <div className="hidden text-white font-bold sm:block">
+        <ToastContainer/>
           <span className=' font-bold text-xl'>{user?.user_type === "student" ? "Student Dashboard" :
             user.user_type === "register office" ? "Register Dashboard" : user.user_type === "chairman" ? "Chairman Dashboard" : user.user_type === "coordinator" ? "Coordinator Dashboard" : user.user_type === "teacher" ? "Teacher Dashboard" :
               "Guest"}</span>
@@ -77,7 +82,9 @@ const Header = (props: {
           <DropdownUser user={user} />
           {/* <!-- User Area --> */}
         </div>
+        
       </div>
+
     </header>
   );
 };
