@@ -4,16 +4,21 @@ import DefaultLayout from '../../layout/DefaultLayout';
 import './examEntry.css'
 import DownloadPdfButton from '../../common/DownloadPdfButton';
 import logo from '../../assets/nstu.png'
+
 const ExamEntry = () => {
     const [user, setUser] = useState<any>(null); // Initialize user state
+
     const printRef = useRef();
+
+
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
         if (storedUser) {
             setUser(JSON.parse(storedUser)); // Set user state from localStorage
         }
     }, []);
-
+    // 286090
+    // 449D44
     return (
         <DefaultLayout>
 
@@ -65,7 +70,7 @@ const ExamEntry = () => {
                             <input type="text" name='mname' className="input-field" placeholder="Mothers's Name" />
                         </div>
                         <div className="md:flex md:items-center">
-                            <label htmlFor="department" className="md:mr-6">Department :</label>
+                            <label htmlFor="department" className="md:mr-6">Department:</label>
                             <input type="text" name='department' className="input-field" placeholder="Department" />
                         </div>
 

@@ -54,7 +54,7 @@ const Header = (props: {
               </span>
             </span>
           </button>
-          <ToastContainer/>+
+          <ToastContainer/>
           {/* <!-- Hamburger Toggle BTN --> */}
           <h1 className='text-white'>{user?.user_type === "student" ? "Student Dashboard" :
             user.user_type === "register office" ? "Register Dashboard" : user.user_type === "chairman" ? "Chairman Dashboard" : user.user_type === "coordinator" ? "Coordinator Dashboard" : user.user_type === "teacher" ? "Teacher Dashboard" :
