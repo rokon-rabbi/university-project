@@ -1,7 +1,6 @@
 import { ToastContainer } from 'react-toastify';
 import DropdownUser from './DropdownUser';
 import { useEffect, useState } from 'react';
-
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (arg0: boolean) => void;
@@ -57,7 +56,8 @@ const Header = (props: {
               </span>
             </span>
           </button>
-          <ToastContainer />
+
+          <ToastContainer/>
           {/* <!-- Hamburger Toggle BTN --> */}
           <h1 className='text-white'>{user?.user_type === "student" ? "Student Dashboard" :
             user.user_type === "register office" ? "Register Dashboard" : user.user_type === "chairman" ? "Chairman Dashboard" : user.user_type === "coordinator" ? "Coordinator Dashboard" : user.user_type === "teacher" ? "Teacher Dashboard" :

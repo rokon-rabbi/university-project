@@ -18,7 +18,6 @@ const ECommerce: React.FC = () => {
 
         </div>
       </div>
-
     </DefaultLayout>
   );
 };

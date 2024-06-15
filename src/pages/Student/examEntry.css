@@ -58,9 +58,9 @@ body {
   .table-header-row {
     background-color: #bdd6ee;
   }
-  @media screen and (max-width: 768px) {
+  /* @media screen and (max-width: 768px) {
     body {
-      width: 1024px; /* or whatever width your desktop view uses */
-      zoom: 0.75; /* Adjust zoom to fit smaller screens */
+      width: 1024px; 
+      zoom: 0.75; 
     }
-  }
+  } */

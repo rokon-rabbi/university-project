@@ -36,8 +36,6 @@ import CourseDistribution from "./pages/Chairman/CourseDistribution";
 import ProvostRoute from "./Routes/ProvostRoute";
 import ExamEntriesProvost from "./pages/Provost/ExamEntriesProvost";
 
-
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -119,7 +117,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/ExamEntriesProvost", // Relative path to the parent route "/dashboard/*"
         element:  <ProvostRoute>  <ExamEntriesProvost/></ProvostRoute>
       },
-      
+
     ]
   },
 ]);

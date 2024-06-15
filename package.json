@@ -17,6 +17,10 @@
     "apexcharts": "^3.41.0",
     "axios": "^1.6.8",
     "flatpickr": "^4.6.13",
+    "html2canvas": "^1.4.1",
+    "html2pdf.js": "^0.10.1",
+    "jspdf": "^2.5.1",
+
     "headlessui": "^0.0.0",
     "html2canvas": "^1.4.1",
     "html2pdf.js": "^0.10.1",
