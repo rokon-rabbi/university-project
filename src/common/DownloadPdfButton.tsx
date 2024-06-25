@@ -12,12 +12,12 @@ const DownloadPdfButton = ({ targetRef }) => {
         // Ensure all images are loaded
         const images = element.getElementsByTagName('img');
         const loadPromises = Array.from(images).map((img) => {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 if (img.complete) {
                     resolve();
                 } else {
                     img.onload = resolve;
-                    img.onerror = reject;
+                    img.onerror = () => resolve();  // resolve even if the image fails to load
                 }
             });
         });
@@ -36,20 +36,18 @@ const DownloadPdfButton = ({ targetRef }) => {
             const pdf = new jsPDF('p', 'mm', 'a4');
             const imgWidth = 210; // Width of A4 page in mm
             const pageHeight = 295; // Height of A4 page in mm
-            const imgHeight = (canvas.height * imgWidth) / canvas.width;
-            let heightLeft = imgHeight;
-            let position = 0;
 
-            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
+            // Calculate the height required to fit the entire content in one page
+            const aspectRatio = canvas.width / canvas.height;
+            const imgHeight = imgWidth / aspectRatio;
 
-            while (heightLeft >= 0) {
-                position = heightLeft - imgHeight;
-                pdf.addPage();
-                pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
+            // Adjust the height to ensure it fits within the A4 page dimensions
+            let adjustedImgHeight = imgHeight;
+            if (imgHeight > pageHeight) {
+                adjustedImgHeight = pageHeight;
             }
 
+            pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, adjustedImgHeight);
             pdf.save('download.pdf');
         } catch (error) {
             console.error('Error generating PDF:', error);

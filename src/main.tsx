@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from './App';
+
 import './css/style.css';
 import './css/satoshi.css';
 import 'jsvectormap/dist/css/jsvectormap.css';
@@ -11,7 +11,7 @@ import RegisterPage from './pages/Register';
 import PrivateRoute from './Routes/PrivateRoute';
 import ErrorPage from './pages/ErrorPage';
 import Profile from './pages/Profile';
-import Calendar from "./pages/Calendar";
+
 import { Provider } from "react-redux";
 import Sample from "./sample";
 import store from "./redux/store/store";
@@ -32,9 +32,9 @@ import CoordinatorEvaluation from "./pages/Coordinator/CoordinatorEvaluation";
 import ChairmanRoute from "./Routes/ChairmanRoute";
 import ChairmanEvaluation from "./pages/Chairman/ChairmanEvaluation";
 import CoordinatorDistribution from "./pages/Chairman/CoordinatorDistribution";
-import CourseDistribution from "./pages/Chairman/CourseDistribution";
 import ProvostRoute from "./Routes/ProvostRoute";
 import ExamEntriesProvost from "./pages/Provost/ExamEntriesProvost";
+import CourseDistribution from "./pages/Chairman/CourseDistribution";
 
 
 export const router = createBrowserRouter([
@@ -115,6 +115,10 @@ export const router = createBrowserRouter([
         element:<ChairmanRoute>  <CoordinatorDistribution/></ChairmanRoute>
       },
       {
+        path: "/dashboard/CourseDistribution", // Relative path to the parent route "/dashboard/*"
+        element:<ChairmanRoute>  <CourseDistribution/></ChairmanRoute>
+      },
+      {
         path: "/dashboard/ExamEntriesProvost", // Relative path to the parent route "/dashboard/*"
         element:  <ProvostRoute>  <ExamEntriesProvost/></ProvostRoute>
       },
@@ -130,4 +134,3 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 
   </React.StrictMode>
 );
-+
