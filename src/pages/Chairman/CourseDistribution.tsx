@@ -84,56 +84,59 @@ const CourseDistribution: React.FC = () => {
         <DefaultLayout>
             <div className="container mx-auto p-4">
                 <h1 className="text-2xl font-bold mb-4 text-center">Course Distribution</h1>
-                <div className="flex justify-center mb-4">
-                    <label className="mr-2">Year:</label>
-                    <select className="border p-1" value={year} onChange={(e) => setYear(Number(e.target.value))}>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                    </select>
-                    <label className="ml-4 mr-2">Term:</label>
-                    <select className="border p-1" value={term} onChange={(e) => setTerm(Number(e.target.value))}>
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                    </select>
+                <div className="flex flex-col sm:flex-row justify-center mb-4">
+                    <div className="flex justify-center sm:justify-start items-center mb-2 sm:mb-0">
+                        <label className="mr-2">Year:</label>
+                        <select className="border p-1" value={year} onChange={(e) => setYear(Number(e.target.value))}>
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                        </select>
+                    </div>
+                    <div className="flex justify-center sm:justify-start items-center">
+                        <label className="ml-0 sm:ml-4 mr-2">Term:</label>
+                        <select className="border p-1" value={term} onChange={(e) => setTerm(Number(e.target.value))}>
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                        </select>
+                    </div>
                 </div>
-                <table className="min-w-full bg-white">
-                    <thead>
-                        <tr>
-                            <th className="py-2 text-white bg-black">SL</th>
-                            <th className="py-2 text-white bg-black">Course Name</th>
-                            <th className="py-2 text-white bg-black">Course Code</th>
-                            <th className="py-2 text-white bg-black">Select Teacher</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {courses.map((course, index) => (
-
-                            <tr key={course.course_id} className="text-center">
-                                <td className="border px-4 py-2">{index + 1}</td>
-                                <td className="border px-4 py-2">{course.course_name}</td>
-                                <td className="border px-4 py-2">{course.course_code}</td>
-                                <td className="border px-4 py-2">
-
-                                    <select
-                                        className="border p-1"
-                                        value={selectedTeachers[index] || ''}
-                                        onChange={(e) => handleTeacherChange(index, Number(e.target.value))}
-                                    >
-                                        <option value="" disabled>Select Teacher</option>
-                                        {teachers.map((teacher) => (
-                                            <option key={teacher.teacher_id} value={teacher.teacher_id}>
-                                                {teacher.name}
-
-                                            </option>
-                                        ))}
-                                    </select>
-                                </td>
+                <div className="overflow-x-auto">
+                    <table className="min-w-full bg-white">
+                        <thead>
+                            <tr>
+                                <th className="py-2 text-white bg-black">SL</th>
+                                <th className="py-2 text-white bg-black">Course Name</th>
+                                <th className="py-2 text-white bg-black">Course Code</th>
+                                <th className="py-2 text-white bg-black">Select Teacher</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {courses.map((course, index) => (
+                                <tr key={course.course_id} className="text-center">
+                                    <td className="border px-4 py-2">{index + 1}</td>
+                                    <td className="border px-4 py-2">{course.course_name}</td>
+                                    <td className="border px-4 py-2">{course.course_code}</td>
+                                    <td className="border px-4 py-2">
+                                        <select
+                                            className="border p-1"
+                                            value={selectedTeachers[index] || ''}
+                                            onChange={(e) => handleTeacherChange(index, Number(e.target.value))}
+                                        >
+                                            <option value="" disabled>Select Teacher</option>
+                                            {teachers.map((teacher) => (
+                                                <option key={teacher.teacher_id} value={teacher.teacher_id}>
+                                                    {teacher.name}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
                 <div className="flex justify-center mt-4">
                     <button
                         className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-700"
@@ -143,6 +146,7 @@ const CourseDistribution: React.FC = () => {
                     </button>
                 </div>
             </div>
+
         </DefaultLayout>
     );
 };
