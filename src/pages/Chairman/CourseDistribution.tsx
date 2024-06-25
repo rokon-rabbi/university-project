@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DefaultLayout from '../../layout/DefaultLayout';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 interface Course {
     course_id: number;
@@ -59,23 +60,24 @@ const CourseDistribution: React.FC = () => {
 
     const handleSubmit = async () => {
 
-        console.log(courses.map((course, index) => ({
-            course_id: course.course_id,
-            teacher_id: selectedTeachers[index] || null,
-        })));
+        try {
+            const updates = courses.map((course, index) => ({
+                course_id: course.course_id,
+                teacher_id: selectedTeachers[index] || null,
+            }));
 
-        // try {
-        //     const updates = courses.map((course, index) => ({
-        //         course_id: course.course_id,
-        //         teacher_id: selectedTeachers[index] || null,
-        //     }));
-
-        //     await axios.post('http://localhost:5000/api/update-courses', { updates });
-        //     alert('Courses updated successfully');
-        // } catch (error) {
-        //     console.error('Error updating courses:', error);
-        //     alert('Failed to update courses');
-        // }
+            await axios.post('http://localhost:5000/api/update-courses', { updates });
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Teachers added to the courses Successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } catch (error) {
+            console.error('Error updating courses:', error);
+            alert('Failed to update courses');
+        }
     };
 
     return (
@@ -107,6 +109,7 @@ const CourseDistribution: React.FC = () => {
                     </thead>
                     <tbody>
                         {courses.map((course, index) => (
+
                             <tr key={course.course_id} className="text-center">
                                 <td className="border px-4 py-2">{index + 1}</td>
                                 <td className="border px-4 py-2">{course.course_name}</td>
@@ -122,6 +125,7 @@ const CourseDistribution: React.FC = () => {
                                         {teachers.map((teacher) => (
                                             <option key={teacher.teacher_id} value={teacher.teacher_id}>
                                                 {teacher.name}
+
                                             </option>
                                         ))}
                                     </select>
