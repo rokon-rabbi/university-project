@@ -5,7 +5,9 @@ import CardClass from './CardClass';
 
 const TeacherClasses = () => {
     const [classes, setClasses] = useState([]);
-    const [error, setError] = useState<string | null>(null);
+    const [teacherid, setTeacher] = useState([]);
+
+
 
     useEffect(() => {
         // Fetch user from localStorage
@@ -24,6 +26,7 @@ const TeacherClasses = () => {
                 .then(response => {
                     const teacherData = response.data;
                     const teacherId = teacherData.teacher_id;
+                    setTeacher(teacherId)
                     console.log("teacher ID:", teacherId);
 
                     // Fetch courses data using teacher ID
@@ -39,7 +42,7 @@ const TeacherClasses = () => {
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
-                    setError('Error fetching data');
+
                 });
         }
     }, []);
@@ -47,22 +50,23 @@ const TeacherClasses = () => {
     return (
         <DefaultLayout>
 
-<div className=" bg-gray-100 flex items-center justify-center p-4">
+            <div className=" bg-gray-100 flex items-center justify-center p-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {classes.map((classItem) => (
+                    {classes.map((classItem) => (
                         <CardClass
                             key={classItem.id}
                             courseCode={classItem.course_code}
                             course_level={classItem.course_level}
                             courseName={classItem.course_name}
-                            credit={classItem.course_credit}
+                            courseid={classItem.course_id}
+                            teacherid={teacherid}
                         />
                     ))}
                 </div>
             </div>
 
 
-          
+
         </DefaultLayout>
     );
 };

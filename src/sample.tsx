@@ -26,6 +26,8 @@ import ChairmanEvaluation from './pages/Chairman/ChairmanEvaluation';
 import ChairmanRoute from './Routes/ChairmanRoute';
 import CoordinatorDistribution from './pages/Chairman/CoordinatorDistribution';
 import CourseDistribution from './pages/Chairman/CourseDistribution';
+import AttendancePage from './pages/Teacher/AttendancePage';
+import ViewAttendancePage from './pages/Teacher/ViewAttendancePage';
 
 function Sample() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -114,6 +116,24 @@ function Sample() {
             <>
               <PageTitle title="classes" />
               <TeacherRoute>  <TeacherClasses/></TeacherRoute>
+            </>
+          }
+        />
+           <Route
+          path="takeAttendence/:course_level"
+          element={
+            <>
+              <PageTitle title="attendance" />
+              <TeacherRoute>  <AttendancePage/></TeacherRoute>
+            </>
+          }
+        />
+          <Route
+          path="viewAttendence/:course_level"
+          element={
+            <>
+              <PageTitle title="view-attendance" />
+              <TeacherRoute>  <ViewAttendancePage/></TeacherRoute>
             </>
           }
         />

@@ -35,6 +35,8 @@ import CoordinatorDistribution from "./pages/Chairman/CoordinatorDistribution";
 import ProvostRoute from "./Routes/ProvostRoute";
 import ExamEntriesProvost from "./pages/Provost/ExamEntriesProvost";
 import CourseDistribution from "./pages/Chairman/CourseDistribution";
+import AttendancePage from "./pages/Teacher/AttendancePage";
+import ViewAttendancePage from "./pages/Teacher/ViewAttendancePage";
 
 
 export const router = createBrowserRouter([
@@ -86,6 +88,14 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/classes", // Relative path to the parent route "/dashboard/*"
         element: <TeacherRoute><TeacherClasses/></TeacherRoute>
+      },
+      {
+        path: "/dashboard/takeAttendence/:course_level", // Relative path to the parent route "/dashboard/*"
+        element: <TeacherRoute><AttendancePage/></TeacherRoute>
+      },
+      {
+        path: "/dashboard/viewAttendence/:course_level", // Relative path to the parent route "/dashboard/*"
+        element: <TeacherRoute> <ViewAttendancePage/> </TeacherRoute>
       },
       {
         path: "/dashboard/evaluationReport", // Relative path to the parent route "/dashboard/*"

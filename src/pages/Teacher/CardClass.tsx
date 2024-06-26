@@ -1,12 +1,22 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Utility function to generate a random image URL
 const getRandomImageUrl = () => `https://picsum.photos/200/300?random=${Math.floor(Math.random() * 1000)}&category=nature`;
-const CardClass = ({ courseCode, course_level, courseName, credit }) => {
+
+const CardClass = ({ courseCode, course_level, courseName, courseid, teacherid }) => {
+  const navigate = useNavigate();
   const backgroundImageUrl = getRandomImageUrl();
 
+  const handleTakeAttendance = (course_level, courseid, teacherid) => {
+    navigate(`/dashboard/takeAttendence/${course_level}`, { state: { courseid, teacherid } });
+  };
+  const handleViewAttendance = (course_level, courseid) => {
+    navigate(`/dashboard/viewAttendence/${course_level} `, { state: { courseid } });
+  };
+
   return (
-    <div className="w-70 h-64 mx-auto bg-white hover:shadow-2xl   shadow-md rounded-lg overflow-hidden">
+    <div className="w-70 h-64 mx-auto bg-white hover:shadow-2xl shadow-md rounded-lg overflow-hidden">
       <div
         className="h-32 bg-cover bg-center"
         style={{ backgroundImage: `url(${backgroundImageUrl})` }}
@@ -23,10 +33,10 @@ const CardClass = ({ courseCode, course_level, courseName, credit }) => {
       </div>
       <div className="p-4 border-t">
         <div className="flex justify-between">
-          <button className="bg-blue-500 text-xs font-extrabold text-white py-3 px-3 rounded hover:bg-blue-700">
+          <button onClick={() => handleTakeAttendance(course_level, courseid, teacherid)} className="bg-blue-500 text-xs font-extrabold text-white py-3 px-3 rounded hover:bg-blue-700">
             Take Attendance
           </button>
-          <button className="bg-green-500 text-xs  font-extrabold text-white py-3 px-3 rounded hover:bg-green-700">
+          <button onClick={() => handleViewAttendance(course_level, courseid)} className="bg-green-500 text-xs font-extrabold text-white py-3 px-3 rounded hover:bg-green-700">
             View Attendance
           </button>
         </div>
