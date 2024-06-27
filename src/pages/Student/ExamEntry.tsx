@@ -17,8 +17,7 @@ const ExamEntry = () => {
             setUser(JSON.parse(storedUser)); // Set user state from localStorage
         }
     }, []);
-    // 286090
-    // 449D44
+   
     return (
         <DefaultLayout>
 

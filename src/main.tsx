@@ -37,6 +37,7 @@ import ExamEntriesProvost from "./pages/Provost/ExamEntriesProvost";
 import CourseDistribution from "./pages/Chairman/CourseDistribution";
 import AttendancePage from "./pages/Teacher/AttendancePage";
 import ViewAttendancePage from "./pages/Teacher/ViewAttendancePage";
+import CourseEvaluationForm from "./pages/Student/CourseEvaluationForm";
 
 
 export const router = createBrowserRouter([
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/evaluation", // Relative path to the parent route "/dashboard/*"
         element:<StudentRoute> <CourseEvaluation/></StudentRoute>
+      },
+      {
+        path: "/dashboard/course-evaluation/:courseId", // Relative path to the parent route "/dashboard/*"
+        element:<StudentRoute> <CourseEvaluationForm/></StudentRoute>
       },
       {
         path: "/dashboard/exam", // Relative path to the parent route "/dashboard/*"

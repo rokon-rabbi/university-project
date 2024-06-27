@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useLocation, useParams } from 'react-router-dom';
 import DefaultLayout from '../../layout/DefaultLayout';
 import 'tailwindcss/tailwind.css';
+import DownloadPdfButton from '../../common/DownloadPdfButton';
 
 const ViewAttendancePage = () => {
   const { course_level } = useParams();
@@ -10,7 +11,7 @@ const ViewAttendancePage = () => {
   const [attendanceData, setAttendanceData] = useState({ dates: [], data: [] });
   const location = useLocation();
   const { courseid } = location.state || {};
-
+  const printRef = useRef();
   useEffect(() => {
     const fetchAttendanceData = async () => {
       try {
@@ -45,8 +46,11 @@ const ViewAttendancePage = () => {
 
   return (
     <DefaultLayout>
-      <div className="container mx-auto p-4">
-        <h3 className="text-2xl font-bold mb-4 text-center">Attendance Records for Course Level {course_level}</h3>
+      <>
+      <DownloadPdfButton targetRef={printRef} />
+      <div  ref={printRef} className="container mx-auto p-4">
+      
+        <h3 className="text-2xl font-bold mb-4 text-center">Attendance Records of  {course_level}</h3>
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300">
             <thead>
@@ -77,6 +81,7 @@ const ViewAttendancePage = () => {
           </table>
         </div>
       </div>
+      </>
     </DefaultLayout>
   );
 };

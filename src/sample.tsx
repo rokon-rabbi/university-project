@@ -28,6 +28,7 @@ import CoordinatorDistribution from './pages/Chairman/CoordinatorDistribution';
 import CourseDistribution from './pages/Chairman/CourseDistribution';
 import AttendancePage from './pages/Teacher/AttendancePage';
 import ViewAttendancePage from './pages/Teacher/ViewAttendancePage';
+import CourseEvaluationForm from './pages/Student/CourseEvaluationForm';
 
 function Sample() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -84,6 +85,15 @@ function Sample() {
             <>
               <PageTitle title=" course evaluation" />
               <StudentRoute>  <CourseEvaluation/></StudentRoute>
+            </>
+          }
+        />
+         <Route
+          path="course-evaluation/:courseId"
+          element={
+            <>
+              <PageTitle title="course-evaluation" />
+              <StudentRoute> <CourseEvaluationForm/> </StudentRoute>
             </>
           }
         />

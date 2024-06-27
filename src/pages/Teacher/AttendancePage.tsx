@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useLocation, useParams } from 'react-router-dom';
 import DefaultLayout from '../../layout/DefaultLayout';
 import 'tailwindcss/tailwind.css';
+import Swal from 'sweetalert2';
 
 const AttendancePage = () => {
   const { course_level } = useParams();
@@ -52,7 +53,14 @@ const AttendancePage = () => {
 
     try {
       await axios.post('http://localhost:5000/api/attendances', attendanceData);
-      alert('Attendance data submitted successfully');
+
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Attendance data submitted successfully",
+        showConfirmButton: false,
+        timer: 1500
+      });
     } catch (error) {
       console.error('Error submitting attendance data', error);
     }
@@ -63,7 +71,7 @@ const AttendancePage = () => {
       <div className="container mx-auto p-4">
         <h3 className="text-2xl font-bold mb-4 text-center">Student List of {course_level}</h3>
         <div className="flex  md:flex-row justify-between mb-4">
-         
+
           <div className="mt-2 md:mt-0">
             <input
               type="date"
@@ -114,7 +122,7 @@ const AttendancePage = () => {
         </div>
         <button
           onClick={handleSubmit}
-          className="mt-4 w-full md:w-auto bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
+          className="mt-4 mx-auto block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
         >
           Submit Attendance
         </button>
