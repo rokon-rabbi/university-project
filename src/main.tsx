@@ -38,6 +38,7 @@ import CourseDistribution from "./pages/Chairman/CourseDistribution";
 import AttendancePage from "./pages/Teacher/AttendancePage";
 import ViewAttendancePage from "./pages/Teacher/ViewAttendancePage";
 import CourseEvaluationForm from "./pages/Student/CourseEvaluationForm";
+import CourseEvaluationReport from "./pages/Teacher/CourseEvaluationReport";
 
 
 export const router = createBrowserRouter([
@@ -48,15 +49,15 @@ export const router = createBrowserRouter([
   },
   {
     path: "/register", // Relative path to the parent route "/dashboard/*"
-    element:<RegisterPage></RegisterPage>
+    element: <RegisterPage></RegisterPage>
   },
   {
     path: "/reset", // Relative path to the parent route "/dashboard/*"
-    element:<Reset/>
+    element: <Reset />
   },
   {
     path: "/reset-password", // Relative path to the parent route "/dashboard/*"
-    element:<NewPassword/>
+    element: <NewPassword />
   },
 
   {
@@ -65,26 +66,26 @@ export const router = createBrowserRouter([
       <PrivateRoute><Sample /></PrivateRoute>,
     // <RegisterPage/>,
     children: [
-     
+
       {
         path: "/dashboard/attendence", // Relative path to the parent route "/dashboard/*"
-        element:<StudentRoute> <AttendenceReport/></StudentRoute>
+        element: <StudentRoute> <AttendenceReport /></StudentRoute>
       },
       {
         path: "/dashboard/evaluation", // Relative path to the parent route "/dashboard/*"
-        element:<StudentRoute> <CourseEvaluation/></StudentRoute>
+        element: <StudentRoute> <CourseEvaluation /></StudentRoute>
       },
       {
         path: "/dashboard/course-evaluation/:courseId", // Relative path to the parent route "/dashboard/*"
-        element:<StudentRoute> <CourseEvaluationForm/></StudentRoute>
+        element: <StudentRoute> <CourseEvaluationForm /></StudentRoute>
       },
       {
         path: "/dashboard/exam", // Relative path to the parent route "/dashboard/*"
-        element: <StudentRoute><ExamEntry/></StudentRoute>
+        element: <StudentRoute><ExamEntry /></StudentRoute>
       },
       {
         path: "/dashboard/examEntries", // Relative path to the parent route "/dashboard/*"
-        element: <RegisterRoute><ExamEntries/></RegisterRoute>
+        element: <RegisterRoute><ExamEntries /></RegisterRoute>
       },
       {
         path: "/dashboard/profile", // Relative path to the parent route "/dashboard/*"
@@ -92,50 +93,50 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/classes", // Relative path to the parent route "/dashboard/*"
-        element: <TeacherRoute><TeacherClasses/></TeacherRoute>
+        element: <TeacherRoute><TeacherClasses /></TeacherRoute>
       },
       {
         path: "/dashboard/takeAttendence/:course_level", // Relative path to the parent route "/dashboard/*"
-        element: <TeacherRoute><AttendancePage/></TeacherRoute>
+        element: <TeacherRoute><AttendancePage /></TeacherRoute>
       },
       {
         path: "/dashboard/viewAttendence/:course_level", // Relative path to the parent route "/dashboard/*"
-        element: <TeacherRoute> <ViewAttendancePage/> </TeacherRoute>
+        element: <TeacherRoute> <ViewAttendancePage /> </TeacherRoute>
       },
       {
         path: "/dashboard/evaluationReport", // Relative path to the parent route "/dashboard/*"
-        element: <TeacherRoute><CourseEvaluation/></TeacherRoute>
+        element: <TeacherRoute><CourseEvaluationReport /></TeacherRoute>
       },
       // Coordinator
       {
         path: "/dashboard/CoordinatorClasses", // Relative path to the parent route "/dashboard/*"
-        element:  <CoordinatorRoute>  <CoordinatorClasses/></CoordinatorRoute>
+        element: <CoordinatorRoute>  <CoordinatorClasses /></CoordinatorRoute>
       },
       {
         path: "/dashboard/Coordinator", // Relative path to the parent route "/dashboard/*"
-        element: <CoordinatorRoute>  <Coordinator/></CoordinatorRoute>
+        element: <CoordinatorRoute>  <Coordinator /></CoordinatorRoute>
       },
       {
         path: "/dashboard/CoordinatorEvaluation", // Relative path to the parent route "/dashboard/*"
-        element: <CoordinatorRoute>  <CoordinatorEvaluation/></CoordinatorRoute>
+        element: <CoordinatorRoute>  <CoordinatorEvaluation /></CoordinatorRoute>
       },
       // Chairman
       {
         path: "/dashboard/ChairmanEvaluation", // Relative path to the parent route "/dashboard/*"
-        element:<ChairmanRoute>  <ChairmanEvaluation/></ChairmanRoute>
+        element: <ChairmanRoute>  <ChairmanEvaluation /></ChairmanRoute>
       },
 
       {
         path: "/dashboard/CoordinatorDistribution", // Relative path to the parent route "/dashboard/*"
-        element:<ChairmanRoute>  <CoordinatorDistribution/></ChairmanRoute>
+        element: <ChairmanRoute>  <CoordinatorDistribution /></ChairmanRoute>
       },
       {
         path: "/dashboard/CourseDistribution", // Relative path to the parent route "/dashboard/*"
-        element:<ChairmanRoute>  <CourseDistribution/></ChairmanRoute>
+        element: <ChairmanRoute>  <CourseDistribution /></ChairmanRoute>
       },
       {
         path: "/dashboard/ExamEntriesProvost", // Relative path to the parent route "/dashboard/*"
-        element:  <ProvostRoute>  <ExamEntriesProvost/></ProvostRoute>
+        element: <ProvostRoute>  <ExamEntriesProvost /></ProvostRoute>
       },
     ]
   },

@@ -29,6 +29,7 @@ import CourseDistribution from './pages/Chairman/CourseDistribution';
 import AttendancePage from './pages/Teacher/AttendancePage';
 import ViewAttendancePage from './pages/Teacher/ViewAttendancePage';
 import CourseEvaluationForm from './pages/Student/CourseEvaluationForm';
+import CourseEvaluationReport from './pages/Teacher/CourseEvaluationReport';
 
 function Sample() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -57,188 +58,188 @@ function Sample() {
   return loading ? (
     <Loader />
   ) : (
-  
-     <Routes>
-        <Route
-          index
-          element={
-            <>
-              <PageTitle title="Dashboard" />
-              <ECommerce />
-              
-            </>
-          }
-        />
-        {/* student routes  start */}
-        <Route
-          path="/attendence"
-          element={
-            <>
-              <PageTitle title="attendence" />
-             <StudentRoute> <AttendenceReport/></StudentRoute>
-            </>
-          }
-        />
-        <Route
-          path="/evaluation"
-          element={
-            <>
-              <PageTitle title=" course evaluation" />
-              <StudentRoute>  <CourseEvaluation/></StudentRoute>
-            </>
-          }
-        />
-         <Route
-          path="course-evaluation/:courseId"
-          element={
-            <>
-              <PageTitle title="course-evaluation" />
-              <StudentRoute> <CourseEvaluationForm/> </StudentRoute>
-            </>
-          }
-        />
-        <Route
-          path="/exam"
-          element={
-            <>
-              <PageTitle title="exam entry" />
-              <StudentRoute>  <ExamEntry/></StudentRoute>
-            </>
-          }
-        />
-        {/* student route end  */}
-        {/* Register start  */}
-        <Route
-          path="/examEntries"
-          element={
-            <>
-              <PageTitle title="exam entries" />
-             <RegisterRoute> <ExamEntries/></RegisterRoute>
-            </>
-          }
-        />
-        {/* Register end  */}
 
-        {/* Teacher route start here */}
-        <Route
-          path="/classes"
-          element={
-            <>
-              <PageTitle title="classes" />
-              <TeacherRoute>  <TeacherClasses/></TeacherRoute>
-            </>
-          }
-        />
-           <Route
-          path="takeAttendence/:course_level"
-          element={
-            <>
-              <PageTitle title="attendance" />
-              <TeacherRoute>  <AttendancePage/></TeacherRoute>
-            </>
-          }
-        />
-          <Route
-          path="viewAttendence/:course_level"
-          element={
-            <>
-              <PageTitle title="view-attendance" />
-              <TeacherRoute>  <ViewAttendancePage/></TeacherRoute>
-            </>
-          }
-        />
-          <Route
-          path="/evaluationReport"
-          element={
-            <>
-              <PageTitle title="Course Evaluation" />
-              <TeacherRoute>  <CourseEvaluation/></TeacherRoute>
-            </>
-          }
-        />
-        {/* Teacher route end here  */}
-        {/* Provost route start here  */}
-        <Route
-          path="/ExamEntriesProvost"
-          element={
-            <>
-              <PageTitle title="Exam Entries" />
-              <ProvostRoute>  <ExamEntriesProvost/></ProvostRoute>
-            </>
-          }
-        />
-        {/* provost route end  */}
-        {/* coordinator route start  */}
-        <Route
-          path="/CoordinatorClasses"
-          element={
-            <>
-              <PageTitle title="Classes" />
-              <CoordinatorRoute>  <CoordinatorClasses/></CoordinatorRoute>
-            </>
-          }
-        />
-         <Route
-          path="/Coordinator"
-          element={
-            <>
-              <PageTitle title="Coordinator" />
-              <CoordinatorRoute>  <Coordinator/></CoordinatorRoute>
-            </>
-          }
-        />
-         <Route
-          path="/CoordinatorEvaluation"
-          element={
-            <>
-              <PageTitle title="Evaluation" />
-              <CoordinatorRoute>  <CoordinatorEvaluation/></CoordinatorRoute>
-            </>
-          }
-        />
-        {/* coordinator route end  */}
-        {/* chairman route start */}
-        <Route
-          path="/ChairmanEvaluation"
-          element={
-            <>
-              <PageTitle title="Evaluation" />
-              <ChairmanRoute>  <ChairmanEvaluation/></ChairmanRoute>
-            </>
-          }
-        />
-         <Route
-          path="/CoordinatorDistribution"
-          element={
-            <>
-              <PageTitle title="Coordinator Distribution" />
-              <ChairmanRoute>  <CoordinatorDistribution/></ChairmanRoute>
-            </>
-          }
-        />
-         <Route
-          path="/CourseDistribution"
-          element={
-            <>
-              <PageTitle title="Course Distribution" />
-              <ChairmanRoute>  <CourseDistribution/></ChairmanRoute>
-            </>
-          }
-        />
-        {/* chairman route end  */}
-    
-        <Route
-          path="/profile"
-          element={
-            <>
-              <PageTitle title="Profile" />
-              <Profile />
-            </>
-          }
-        />
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
-      </Routes>
-  
+    <Routes>
+      <Route
+        index
+        element={
+          <>
+            <PageTitle title="Dashboard" />
+            <ECommerce />
+
+          </>
+        }
+      />
+      {/* student routes  start */}
+      <Route
+        path="/attendence"
+        element={
+          <>
+            <PageTitle title="attendence" />
+            <StudentRoute> <AttendenceReport /></StudentRoute>
+          </>
+        }
+      />
+      <Route
+        path="/evaluation"
+        element={
+          <>
+            <PageTitle title=" course evaluation" />
+            <StudentRoute>  <CourseEvaluation /></StudentRoute>
+          </>
+        }
+      />
+      <Route
+        path="course-evaluation/:courseId"
+        element={
+          <>
+            <PageTitle title="course-evaluation" />
+            <StudentRoute> <CourseEvaluationForm /> </StudentRoute>
+          </>
+        }
+      />
+      <Route
+        path="/exam"
+        element={
+          <>
+            <PageTitle title="exam entry" />
+            <StudentRoute>  <ExamEntry /></StudentRoute>
+          </>
+        }
+      />
+      {/* student route end  */}
+      {/* Register start  */}
+      <Route
+        path="/examEntries"
+        element={
+          <>
+            <PageTitle title="exam entries" />
+            <RegisterRoute> <ExamEntries /></RegisterRoute>
+          </>
+        }
+      />
+      {/* Register end  */}
+
+      {/* Teacher route start here */}
+      <Route
+        path="/classes"
+        element={
+          <>
+            <PageTitle title="classes" />
+            <TeacherRoute>  <TeacherClasses /></TeacherRoute>
+          </>
+        }
+      />
+      <Route
+        path="takeAttendence/:course_level"
+        element={
+          <>
+            <PageTitle title="attendance" />
+            <TeacherRoute>  <AttendancePage /></TeacherRoute>
+          </>
+        }
+      />
+      <Route
+        path="viewAttendence/:course_level"
+        element={
+          <>
+            <PageTitle title="view-attendance" />
+            <TeacherRoute>  <ViewAttendancePage /></TeacherRoute>
+          </>
+        }
+      />
+      <Route
+        path="/evaluationReport"
+        element={
+          <>
+            <PageTitle title="Course Evaluation" />
+            <TeacherRoute>  <CourseEvaluationReport /></TeacherRoute>
+          </>
+        }
+      />
+      {/* Teacher route end here  */}
+      {/* Provost route start here  */}
+      <Route
+        path="/ExamEntriesProvost"
+        element={
+          <>
+            <PageTitle title="Exam Entries" />
+            <ProvostRoute>  <ExamEntriesProvost /></ProvostRoute>
+          </>
+        }
+      />
+      {/* provost route end  */}
+      {/* coordinator route start  */}
+      <Route
+        path="/CoordinatorClasses"
+        element={
+          <>
+            <PageTitle title="Classes" />
+            <CoordinatorRoute>  <CoordinatorClasses /></CoordinatorRoute>
+          </>
+        }
+      />
+      <Route
+        path="/Coordinator"
+        element={
+          <>
+            <PageTitle title="Coordinator" />
+            <CoordinatorRoute>  <Coordinator /></CoordinatorRoute>
+          </>
+        }
+      />
+      <Route
+        path="/CoordinatorEvaluation"
+        element={
+          <>
+            <PageTitle title="Evaluation" />
+            <CoordinatorRoute>  <CoordinatorEvaluation /></CoordinatorRoute>
+          </>
+        }
+      />
+      {/* coordinator route end  */}
+      {/* chairman route start */}
+      <Route
+        path="/ChairmanEvaluation"
+        element={
+          <>
+            <PageTitle title="Evaluation" />
+            <ChairmanRoute>  <ChairmanEvaluation /></ChairmanRoute>
+          </>
+        }
+      />
+      <Route
+        path="/CoordinatorDistribution"
+        element={
+          <>
+            <PageTitle title="Coordinator Distribution" />
+            <ChairmanRoute>  <CoordinatorDistribution /></ChairmanRoute>
+          </>
+        }
+      />
+      <Route
+        path="/CourseDistribution"
+        element={
+          <>
+            <PageTitle title="Course Distribution" />
+            <ChairmanRoute>  <CourseDistribution /></ChairmanRoute>
+          </>
+        }
+      />
+      {/* chairman route end  */}
+
+      <Route
+        path="/profile"
+        element={
+          <>
+            <PageTitle title="Profile" />
+            <Profile />
+          </>
+        }
+      />
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+    </Routes>
+
   );
 }
 

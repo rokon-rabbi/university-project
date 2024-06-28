@@ -6,9 +6,10 @@ import DefaultLayout from '../../layout/DefaultLayout';
 const CourseEvaluation = () => {
   const { courseId } = useParams();
   const location = useLocation();
-  const [student, setStudent]=useState();
-  const { teacherid } = location.state || {};
-
+  const [student, setStudent] = useState();
+  const [batc, setbatc] = useState();
+  const { teacherid, course_code, course_name,course_level } = location.state || {};
+  console.log(course_level)
   const [evaluation, setEvaluation] = useState({
     question1a: '',
     question1b: '',
@@ -32,28 +33,31 @@ const CourseEvaluation = () => {
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       console.log(parsedUser.user_id);
-  
+
       // Fetch student data based on user ID
       axios.get(`http://localhost:5000/api/unique_student`, {
-          params: {
-              userId: parsedUser.user_id
-          }
+        params: {
+          userId: parsedUser.user_id
+        }
       })
-      .then(response => {
+        .then(response => {
           // Handle successful response
           const studentData = response.data;
-        
+
           setStudent(studentData.student_id)
-          console.log(student)
-          
+          setbatc(studentData.level)
+          console.log(batc)
+         
+
           // Process student data as needed
-      })
-      .catch(error => {
+        })
+        .catch(error => {
           // Handle error
           console.error('Error fetching student data:', error);
-      });
-  }
+        });
+    }
     // Fetch data from the backend to check if the student has already submitted the form
+    
     axios.get(`http://localhost:5000/api/check-evaluation?courseId=${courseId}&studentId=${student}`)
       .then(response => {
         console.log(response.data.submitted)
@@ -88,19 +92,26 @@ const CourseEvaluation = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const evaluationScore = calculateScore();
-    axios.post('http://localhost:5000/api/evaluate-course', {
-      courseId,
-      teacherid,
-      evaluationScore,
-      evaluationDate: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
-      student,
-      ...evaluation,
-    })
-    .then((response) => {
-      alert('Evaluation submitted successfully');
-      setIsSubmitted(true);
-    })
-    .catch((error) => console.error('Error submitting evaluation:', error));
+   
+    if(batc == course_level){
+      axios.post('http://localhost:5000/api/evaluate-course', {
+        courseId,
+        teacherid,
+        evaluationScore,
+        evaluationDate: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
+        student,
+        ...evaluation,
+      })
+        .then((response) => {
+          alert('Evaluation submitted successfully');
+          setIsSubmitted(true);
+        })
+        .catch((error) => console.error('Error submitting evaluation:', error));
+    }
+    else{
+      alert("You are not student of this batch.")
+    }
+ 
   };
 
   const renderQuestion = (question, name) => (
@@ -119,9 +130,10 @@ const CourseEvaluation = () => {
   return (
     <DefaultLayout>
       <div className="container max-w-5xl mx-auto p-4">
-        <h1 className="text-3xl font-bold text-center my-4">Course Evaluation</h1>
-        <p className="text-center text-xl mb-8">SE4203: Software Maintenance</p>
-        <p className="text-center text-lg mb-6">Course Teacher: Md. Iftekharul Alam Efat</p>
+        <h1 className="text-3xl font-bold text-center my-4">Course Evaluation Form</h1>
+        <p className="text-center text-xl mb-8">{course_code}     :
+          {course_name}</p>
+        {/* <p className="text-center text-lg mb-6">Course Teacher: Md. Iftekharul Alam Efat</p> */}
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <h2 className="text-xl font-semibold mb-2">1. Course Content & Organization</h2>

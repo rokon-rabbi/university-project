@@ -19,8 +19,8 @@ const CourseEvaluation = () => {
             .catch(error => console.error('Error fetching courses:', error));
     };
 
-    const handleRowClick = (courseId,teacherid) => {
-        navigate(`/dashboard/course-evaluation/${courseId}`, { state: {teacherid } });
+    const handleRowClick = (courseId,teacherid,course_code,course_name,course_level) => {
+        navigate(`/dashboard/course-evaluation/${courseId}`, { state: {teacherid, course_code,course_name,course_level } });
     };
 
     return (
@@ -50,7 +50,7 @@ const CourseEvaluation = () => {
 
                 <table className="mt-4 w-full border-collapse">
                     <thead>
-                        <tr>
+                        <tr className=' bg-black text-white'>
                             <th className="border px-4 py-2">SL</th>
                             <th className="border px-4 py-2">Course Name</th>
                             <th className="border px-4 py-2">Course Code</th>
@@ -59,7 +59,7 @@ const CourseEvaluation = () => {
                     </thead>
                     <tbody>
                         {courses.map((course, index) => (
-                            <tr key={course.id} className="hover:bg-gray-200 cursor-pointer" onClick={() => handleRowClick(course.course_id, course.teacher_id)}>
+                            <tr key={course.id} className="hover:bg-gray-200 " onClick={() => handleRowClick(course.course_id, course.teacher_id,course.course_code,course.course_name,course.course_level)}>
                                 <td className="border px-4 py-2">{index + 1}</td>
                                 <td className="border px-4 py-2">{course.course_name}</td>
                                 <td className="border px-4 py-2">{course.course_code}</td>
@@ -67,7 +67,7 @@ const CourseEvaluation = () => {
                                     {course.evaluated ? (
                                         <span className="text-green-500">✓</span>
                                     ) : (
-                                        'Click to Evaluate'
+                                       <span className='underline cursor-pointer text-blue-500'> Click to Evaluate</span>
                                     )}
                                 </td>
                             </tr>
