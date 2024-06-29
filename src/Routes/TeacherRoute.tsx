@@ -24,7 +24,7 @@ const TeacherRoute = ({ children }: any) => {
 
 
     // Return children if user is logged in, otherwise redirect to login page
-    return isLoggedIn && user.user_type==="teacher" ? children : <Navigate to="/" state={{ from: location }} replace />;
+    return isLoggedIn && user.user_type==="teacher"||"coordinator" ? children : <Navigate to="/" state={{ from: location }} replace />;
 };
 
 export default TeacherRoute;

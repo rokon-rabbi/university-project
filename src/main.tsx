@@ -101,7 +101,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/viewAttendence/:course_level", // Relative path to the parent route "/dashboard/*"
-        element: <TeacherRoute> <ViewAttendancePage /> </TeacherRoute>
+        element:  <ViewAttendancePage /> 
       },
       {
         path: "/dashboard/evaluationReport", // Relative path to the parent route "/dashboard/*"

@@ -1,3 +1,4 @@
+// src/pages/AttendancePage.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation, useParams } from 'react-router-dom';
@@ -12,20 +13,23 @@ const AttendancePage = () => {
   const [selectAll, setSelectAll] = useState(false);
   const location = useLocation();
   const { courseid, teacherid } = location.state || {};
-
+  // console.log(courseid, teacherid);
   useEffect(() => {
+    // Fetch students for the given course level
     axios.get(`http://localhost:5000/api/getStudents`, {
       params: {
         course_level: course_level
       }
     })
       .then(response => {
+        // console.log(response.data)
         setStudents(response.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
   }, [course_level]);
+
 
   const handleSelectAll = () => {
     setSelectAll(!selectAll);
@@ -49,10 +53,11 @@ const AttendancePage = () => {
 
     try {
       await axios.post('http://localhost:5000/api/attendances', attendanceData);
+
       Swal.fire({
         position: "top",
         icon: "success",
-        title: "Attendance data submitted/updated successfully",
+        title: "Attendance data submitted successfully",
         showConfirmButton: false,
         timer: 1500
       });
@@ -65,7 +70,8 @@ const AttendancePage = () => {
     <DefaultLayout>
       <div className="container mx-auto p-4">
         <h3 className="text-2xl font-bold mb-4 text-center">Student List of {course_level}</h3>
-        <div className="flex md:flex-row justify-between mb-4">
+        <div className="flex  md:flex-row justify-between mb-4">
+
           <div className="mt-2 md:mt-0">
             <input
               type="date"
