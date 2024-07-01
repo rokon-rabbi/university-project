@@ -11,6 +11,13 @@ body {
 .form-table td, .form-table th {
     border: 1px solid #000;
 }
+.not-allowed-message {
+  color: red;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
 .form-table {
     border-collapse: collapse;
     width: 100%;

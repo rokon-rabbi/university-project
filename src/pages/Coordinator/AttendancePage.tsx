@@ -55,7 +55,7 @@ const AttendancePage = () => {
       await axios.post('http://localhost:5000/api/attendances', attendanceData);
 
       Swal.fire({
-        position: "top",
+        position: "top-right",
         icon: "success",
         title: "Attendance data submitted successfully",
         showConfirmButton: false,

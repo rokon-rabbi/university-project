@@ -39,6 +39,7 @@ import AttendancePage from "./pages/Teacher/AttendancePage";
 import ViewAttendancePage from "./pages/Teacher/ViewAttendancePage";
 import CourseEvaluationForm from "./pages/Student/CourseEvaluationForm";
 import CourseEvaluationReport from "./pages/Teacher/CourseEvaluationReport";
+import SignToExamEntry from "./pages/Chairman/SignToExamEntry";
 
 
 export const router = createBrowserRouter([
@@ -124,6 +125,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/ChairmanEvaluation", // Relative path to the parent route "/dashboard/*"
         element: <ChairmanRoute>  <ChairmanEvaluation /></ChairmanRoute>
+      },
+      {
+        path: "/dashboard/SignToExamEntry", // Relative path to the parent route "/dashboard/*"
+        element: <ChairmanRoute> <SignToExamEntry/></ChairmanRoute>
       },
 
       {

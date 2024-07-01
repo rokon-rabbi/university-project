@@ -54,21 +54,21 @@ const Header = (props: {
               </span>
             </span>
           </button>
-          <ToastContainer/>
+          <ToastContainer />
           {/* <!-- Hamburger Toggle BTN --> */}
           <h1 className='text-white'>{user?.user_type === "student" ? "Student Dashboard" :
             user.user_type === "register office" ? "Register Dashboard" : user.user_type === "chairman" ? "Chairman Dashboard" : user.user_type === "coordinator" ? "Coordinator Dashboard" : user.user_type === "teacher" ? "Teacher Dashboard" :
-            user.user_type === "provost" ? "Provost Dashboard":
-              "Guest"}</h1>
+              user.user_type === "provost" ? "Provost Dashboard" :
+                "Guest"}</h1>
           {/* <Link className="block flex-shrink-0 lg:hidden" to="/">
               <img src={LogoIcon} alt="Logo" />
             </Link> */}
         </div>
 
         <div className="hidden text-white font-bold sm:block">
-        <ToastContainer/>
+          <ToastContainer />
           <span className=' font-bold text-xl'>{user?.user_type === "student" ? "Student Dashboard" :
-            user.user_type === "register office" ? "Register Dashboard" : user.user_type === "chairman" ? "Chairman Dashboard" : user.user_type === "coordinator" ? "Coordinator Dashboard" : user.user_type === "teacher" ? "Teacher Dashboard" :
+            user.user_type === "provost" ? "Provost Dashboard" : user.user_type === "register office" ? "Register Dashboard" : user.user_type === "chairman" ? "Chairman Dashboard" : user.user_type === "coordinator" ? "Coordinator Dashboard" : user.user_type === "teacher" ? "Teacher Dashboard" :
               "Guest"}</span>
         </div>
 

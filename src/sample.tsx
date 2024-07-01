@@ -30,6 +30,7 @@ import AttendancePage from './pages/Teacher/AttendancePage';
 import ViewAttendancePage from './pages/Teacher/ViewAttendancePage';
 import CourseEvaluationForm from './pages/Student/CourseEvaluationForm';
 import CourseEvaluationReport from './pages/Teacher/CourseEvaluationReport';
+import SignToExamEntry from './pages/Chairman/SignToExamEntry';
 
 function Sample() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -188,6 +189,7 @@ function Sample() {
           </>
         }
       />
+      
       <Route
         path="/CoordinatorEvaluation"
         element={
@@ -205,6 +207,15 @@ function Sample() {
           <>
             <PageTitle title="Evaluation" />
             <ChairmanRoute>  <ChairmanEvaluation /></ChairmanRoute>
+          </>
+        }
+      />
+       <Route
+        path="/SignToExamEntry"
+        element={
+          <>
+            <PageTitle title="Exam Entries" />
+            <ChairmanRoute>  <SignToExamEntry/></ChairmanRoute>
           </>
         }
       />
